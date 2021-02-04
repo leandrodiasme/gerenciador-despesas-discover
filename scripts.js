@@ -8,10 +8,19 @@ const Modal = {
     }
 }
 
-const Transaction = {
-    all: [
+const Storage = {
+    get(){
+        return JSON.parse(localStorage.getItem("dev.finances:transactions")) || [];
+    },
 
-    ],
+    set(transactions){
+        localStorage.setItem("dev.finances:transactions", JSON.stringify(transactions))
+    }
+}
+
+
+const Transaction = {
+    all: Storage.get(),
     
     add(transaction) {
         Transaction.all.push(transaction)
@@ -74,7 +83,7 @@ const DOM = {
         <td class="${CSSclass}">${amount}</td>
         <td class="date">${transaction.date}</td>
         <td>
-            <img src="assets/minus.svg" onclick="Transaction.remove(${index})" alt="Remover transação">
+            <img src="assets/minus.svg"  onclick="Transaction.remove(${index})" alt="Remover transação">
         </td>
         `
 
@@ -115,7 +124,6 @@ const Utils = {
     },
     formatDate(date) {
         const splittedDate = date.split('-')
-
         return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`
     }
 }
@@ -178,11 +186,13 @@ const Form = {
     }
 }
 
+
+
 const App = {
     init() {
         Transaction.all.forEach(DOM.addTransaction);
-    
         DOM.updateBalance()
+        Storage.set(Transaction.all)
 
     },
     reload() {

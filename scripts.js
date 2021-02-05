@@ -101,7 +101,19 @@ const DOM = {
         document
             .getElementById('totalDisplay')
             .innerHTML = Utils.formatCurrency(Transaction.total())
+            changeColorOfCard();
     }
+}
+
+function changeColorOfCard(){
+    if(Transaction.total() < 0){
+        document.getElementById('total').classList.remove("green-box");
+        document.getElementById('total').classList.add("red-box");
+    }else if(Transaction.total() >= 0){
+        document.getElementById('total').classList.remove("red-box");
+        document.getElementById('total').classList.add("green-box");
+    }
+
 }
 
 const Utils = {
@@ -193,7 +205,7 @@ const App = {
         Transaction.all.forEach(DOM.addTransaction);
         DOM.updateBalance()
         Storage.set(Transaction.all)
-
+        changeColorOfCard();
     },
     reload() {
         DOM.clearTransactions()

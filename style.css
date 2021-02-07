@@ -74,6 +74,20 @@ button:hover{
     opacity: 0.8;
 }
 
+.button.print{
+    color: #3b0c79;
+    border: 2px #3b0c79 solid;
+    border-radius: 0.25rem;
+    height: 50px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+    margin: 20px auto;
+
+}
+
 .button.cancel:hover{
     opacity: 1;
 }

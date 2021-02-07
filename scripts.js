@@ -18,6 +18,18 @@ const Storage = {
     }
 }
 
+function printData()
+{
+   var divToPrint=document.getElementById("data-table");
+   newWin= window.open("");
+   newWin.document.write(divToPrint.outerHTML);
+   newWin.print();
+   newWin.close();
+}
+
+// $('button').on('click',function(){
+// printData();
+// })
 
 const Transaction = {
     all: Storage.get(),

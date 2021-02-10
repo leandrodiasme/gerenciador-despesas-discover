@@ -60,6 +60,14 @@ const Transaction = {
     }
 }
 
+function nightTheme() {
+    var element = document.body;
+    var button = document.querySelector("#btnExport");
+    element.classList.toggle("dark-mode");
+    button.classList.toggle("dark-mode-button");
+ }
+
+
 const DOM = {
     transactionContainer: document.querySelector('#data-table tbody'),
 
